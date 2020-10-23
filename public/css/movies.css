@@ -1,0 +1,81 @@
+body {
+    font-family: Open Sans !important;
+}
+
+.menu-content {
+    font-size: 25px;
+}
+.title {
+    font-size: 14px;
+    font-weight: bold;
+}
+.descript {
+    font-size: 12px;
+    vertical-align: center;
+    min-height: 155px;
+}
+
+.menu {
+    background-color: #F5C518;
+    height: 50px;
+}
+
+.menu-item,.user-item {
+    font-size: 30px;
+    color: white;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    line-height:1.5;
+    width: 55px;
+}
+
+.movie-box {
+    margin: 0 auto;
+    min-width: 300px;
+    max-width: 400px;
+    border: #D3D3D3 1px solid;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(211,211,211,1);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(211,211,211,1);
+    box-shadow: 0px 0px 5px 1px rgba(211,211,211,1);
+    padding: 8px 10px;
+}
+
+.height-col {
+    min-width: 160px;
+    min-height: 200px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.star {
+    color: #F5C518;
+    font-size: 20px;
+    margin: 5px 5px 0 0;
+}
+
+.bg-yellow {
+    background-color: #F5C518 !important;
+    height:100%;
+    width:100%;
+}
+
+.back-arrow {
+    font-size: 30px;
+    color: black;
+}
+
+.text-menu {
+    min-width: 300px;
+    max-width: 100%;
+    margin: 50% auto;
+    text-align: center; 
+}
+
+.menu span a {
+    color: white;
+}
