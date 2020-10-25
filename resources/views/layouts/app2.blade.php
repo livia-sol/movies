@@ -14,12 +14,14 @@
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="css/movies.css">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body class="bg-yellow">
-            @yield('menu-header')
-        
-            @yield('content')
-        
-            @yield('app-js')
+        @yield('menu-header')
+    
+        @yield('content')
+    
+        @yield('app-js')
     </body>
 </html>

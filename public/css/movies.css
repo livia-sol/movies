@@ -61,6 +61,7 @@ body {
 .bg-yellow {
     background-color: #F5C518 !important;
     height:100%;
+    min-height:1000px;
     width:100%;
 }
 
@@ -72,10 +73,16 @@ body {
 .text-menu {
     min-width: 300px;
     max-width: 100%;
-    margin: 50% auto;
-    text-align: center; 
+    margin: 0 auto;
+    margin-top:50%;
+    text-align: center;
 }
 
+.btn-yellow {
+    background-color: #F5C518 !important;
+    height:100%;
+    width:100%;
+}
 .menu span a {
     color: white;
 }

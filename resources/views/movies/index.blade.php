@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-4">
                 <span class="menu-item ml-4">
-                    <a href="{{ route('movies.showMenu')}}"><i class="fa fa-bars"></i></a>
+                    <a href="#" id="menu-link"><i class="fa fa-bars"></i></a>
                 </span>
             </div>
             <div class="col-4">
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="button">
-                            <a href="#" class="btn btn-sm bg-yellow w-100">View more</a>
+                            <a href="#" class="btn btn-sm btn-yellow w-100">View more</a>
                         </div>
                     </div>
                 </div>
@@ -45,4 +45,24 @@
         </div>
     @endforeach 
     
+@endsection
+
+@section('app-js')
+    <script>
+        $(document).ready(function(){
+            $('#menu-link').click(function(e){
+                e.preventDefault();
+                $.ajax({
+                    url: "{{ route('movies.showMenu') }}",
+                    method: 'GET',
+                    success: function(result) {
+                        $('body').html(result);
+                    },
+                    error: function(){
+                        alert('Error!');
+                    } 
+                });
+            });
+        });
+    </script>
 @endsection
