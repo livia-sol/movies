@@ -2,8 +2,8 @@
 
 @section('content')
 
-    <div class="bg-yellow">    
-        <a href="{{ route('movies.index')}}" id="arrow-link"><i class="fa fa-arrow-left back-arrow mt-2 ml-3"></i></a>
+    <div class="bg-yellow-background">    
+        <a href="" id="arrow-link"><i class="fa fa-arrow-left back-arrow mt-2 ml-3"></i></a>
         <div class="menu-content text-menu">
             This is a full screen menu
                 <br><br>

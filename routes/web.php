@@ -19,11 +19,17 @@ Route::get('/', function () {
 
 Route::get('/lists-movies', 'MoviesController@indexJson')->name('movies.indexJson');
 Route::get('/add-movie', 'MoviesController@storeJson')->name('movies.storeJson');
-Route::get('/delete-movie/{id?}', 'MoviesController@destroy')->name('movies.destroy');
+Route::get('/delete-movie/{id?}', 'MoviesController@delete')->name('movies.delete');
 
 Route::get('/menu', 'MoviesController@index')->name('movies.index');
 Route::get('/menu-opened', 'MoviesController@showMenu')->name('movies.showMenu');
 
 //Aditional features
-Route::get('/insert-movie', 'MoviesController@create')->name('movies.create');
-Route::post('/store', 'MoviesController@store')->name('movies.store');
+Route::group(['prefix' => 'movies'], function(){
+    Route::get('/insert', 'MoviesController@create')->name('movies.create');
+    Route::post('/store', 'MoviesController@store')->name('movies.store');
+    Route::get('/edit/{id}', 'MoviesController@edit')->name('movies.edit');
+    Route::post('/update/{id}', 'MoviesController@update')->name('movies.update');
+    Route::get('/movie/{id}', 'MoviesController@show')->name('movies.show');
+    Route::delete('/delete/{id}', 'MoviesController@destroy')->name('movies.destroy');
+});

@@ -12,7 +12,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
-        <link rel="stylesheet" type="text/css" href="css/movies.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/movies.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

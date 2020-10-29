@@ -26,12 +26,12 @@
     <div class="card-body">
         <h5 class="card-title title">Add informations about a movie:</h5>
 
-        {{ Form::open( ['url' => route('movies.store'), 'class' => 'movie-box border border-light p-1', 'files' => true, 'id' => 'add_movie'] ) }}
+        {{ Form::open( ['url' => route('movies.update', encrypt($movie->id) ), 'class' => 'movie-box border border-light p-1', 'files' => true, 'id' => 'edit_movie'] ) }}
         <div class="card-text">
-            {{ Form::select('status', $status,  null, ['class' => 'form-control my-2', 'placeholder' => __('1-visible or 2-hidden') ]) }}
-            {{ Form::text('name', null, ['class' => 'form-control my-2', 'placeholder' => __('Name') ]) }}
-            {{ Form::text('rating', null, ['class' => 'form-control my-2', 'placeholder' => __('Rating') ]) }}
-            {{ Form::textarea('description', '', ['class' => 'form-control my-1', 'placeholder' => __('Description'), 'rows' => 4 ]) }}
+            {{ Form::select('status', $status,  $movie->status, ['class' => 'form-control my-2', 'placeholder' => __('1-visible or 2-hidden') ]) }}
+            {{ Form::text('name', $movie->name, ['class' => 'form-control my-2', 'placeholder' => __('Name') ]) }}
+            {{ Form::text('rating', $movie->rating, ['class' => 'form-control my-2', 'placeholder' => __('Rating') ]) }}
+            {{ Form::textarea('description', $movie->description, ['class' => 'form-control my-1', 'placeholder' => __('Description'), 'rows' => 4 ]) }}
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text mr-4" id="inputGroupFileAddon01">{{ __('Image') }}</span>
@@ -42,10 +42,10 @@
                 </div>
             </div>
         </div>
-        <button class="btn bg-yellow my-4 btn-block" type="submit">{{ __('Save') }}</button>
+        <button class="btn bg-yellow my-4 btn-block" type="submit">{{ __('Update') }}</button>
         {{ Form::close() }}
     </div>
   </div>
-<div class="center my-3 w-100">@if(session()->has('message')) {{ session()->get('message') }} @endif</div>
+{{-- <div class="center my-3 w-100">if(session()->has('message')) { session()->get('message') }} endif</div> --}}
 
 @endsection

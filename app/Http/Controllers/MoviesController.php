@@ -16,8 +16,8 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        $movies = Movie::where('status', 1)->where('rating','>=',5.0)->get();
-        
+        $movies = Movie::where('status', 1)->where('rating','>=',5.0)->paginate(3);//->simplePaginate(3)
+        //dd($movies);
         return view('movies.index',compact('movies'));
     }
 
@@ -111,33 +111,67 @@ class MoviesController extends Controller
      * @param  \App\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    // public function show(Movie $movie)
-    // {
-    //     //
-    // }
+    public function show($id)
+    {   
+        if($id){
+            try {
+                $id = decrypt($id);
+            } catch(\Exception $e) {
+                abort(403, __('app.invalid_data_received'));
+            }
+        }
 
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  \App\Movie  $movie
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit(Movie $movie)
-    // {
-    //     //
-    // }
+        $movie = Movie::find($id);
+        //dd($movie);
+        return view('movies.show', compact('movie'));
+    }
 
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  \App\Movie  $movie
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function update(Request $request, Movie $movie)
-    // {
-    //     //
-    // }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Movie  $movie
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        try {
+            $id = decrypt($id);
+        } catch(\Exception $e) {
+            abort(403, __('app.invalid_data_received'));
+        }
+    
+        $movie = Movie::find($id);
+        $status = [1, 2];
+
+        return view('movies.edit', compact('movie', 'status'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Movie  $movie
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //dd($request->all());
+        try {
+            $id = decrypt($id);
+        } catch(\Exception $e) {
+            abort(403, __('app.invalid_data_received'));
+        }
+
+        $movie = Movie::find($id);
+
+        $movie->status = $request->status;
+        $movie->name = $request->name;
+        $movie->rating = $request->rating;
+        $movie->description = $request->description;
+        $movie->save();
+
+        return redirect()->route('movies.index');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -146,7 +180,7 @@ class MoviesController extends Controller
      * @return \Illuminate\Http\Response
      */
     //Delete movie from url: /delete-movie/{id?}
-    public function destroy($id=null)
+    public function delete($id=null)
     {
         if($id != null){
             $movie = Movie::find($id);
@@ -160,5 +194,33 @@ class MoviesController extends Controller
         }else{
             return response()->json('Set an id.'); 
         }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Movie  $movie
+     * @return \Illuminate\Http\Response
+     */
+    //Delete movie from url: /delete-movie/{id?}
+    public function destroy($id)
+    {
+        if($id)
+        {
+            try {
+                $id = decrypt($id);
+            } catch(\Exception $e) {
+                abort(403, __('app.invalid_data_received'));
+            }
+        }
+
+        if($id){
+            $movie = Movie::find($id);
+            if($movie) {
+                $movie->delete();
+            }
+        }
+
+        return redirect()->route('movies.index');
     }
 }

@@ -9,7 +9,7 @@
                 </span>
             </div>
             <div class="col-4">
-                <img src="{{ asset('assets/logo-imdb.png') }}" alt="Logo IMDb" class="center">
+                <img src="{{ asset('assets/logo-imdb.png') }}" alt="Logo IMDb" class="logo-center">
             </div>
             <div class="col-4">
                 <span class="user-item pull-right mr-4">
@@ -21,6 +21,8 @@
 @endsection
 
 @section('content')
+    
+@if( count($movies) > 0)
     @foreach($movies as $movie)
         <div class="movie-box my-3">
             <div class="row">
@@ -37,14 +39,21 @@
                         </div>
 
                         <div class="button">
-                            <a href="#" class="btn btn-sm btn-yellow w-100">View more</a>
+                            <a href="{{ route('movies.show', encrypt($movie->id)) }}" class="btn btn-sm btn-yellow w-100">View more</a>
                         </div>
                     </div>
                 </div>
             </div> 
         </div>
     @endforeach 
-    
+
+    <div class="d-flex justify-content-center mb-0">
+        {{ $movies->onEachSide(3)->links() }}
+    </div>
+@else
+    <i>{{ __('app.movies_not_found') }}</i>
+@endif
+
 @endsection
 
 @section('app-js')
