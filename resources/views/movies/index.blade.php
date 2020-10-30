@@ -21,6 +21,10 @@
 @endsection
 
 @section('content')
+
+<div class="movie-box bg-yellow my-3"> <a href="{{ route('movies.create') }}" class="btn btn-sm btn-yellow w-100">
+    <i class="fa fa-plus-square-o" aria-hidden="true"></i> {{ __('app.add_movie') }}</a>
+</div>
     
 @if( count($movies) > 0)
     @foreach($movies as $movie)
@@ -39,7 +43,7 @@
                         </div>
 
                         <div class="button">
-                            <a href="{{ route('movies.show', encrypt($movie->id)) }}" class="btn btn-sm btn-yellow w-100">View more</a>
+                            <a href="{{ route('movies.show', encrypt($movie->id)) }}" class="btn btn-sm btn-yellow w-100">{{ __('app.view_more') }}</a>
                         </div>
                     </div>
                 </div>

@@ -15,6 +15,9 @@ return [
 
 'invalid_data_received' => 'Invalid data received',
 'movies_not_found' => 'Movies not found',
+'view_more' => 'View more',
+'add_movie' => 'Add a movie',
+
 
 ];
 ?>
